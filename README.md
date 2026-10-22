@@ -1,6 +1,4 @@
 # A-Tutorial-on-Control-Theoretic-Framework-for-Neural-Network-Training-Dynamics
-# MATLAB Code - Control-Theoretic Framework for Neural Network Training
-
 This folder contains the MATLAB scripts used to produce the experimental
 results reported in *"A Tutorial on Control-Theoretic Framework for Neural
 Network Training Dynamics"*. The paper interprets neural network training as
