@@ -1,5 +1,5 @@
 # A-Tutorial-on-Control-Theoretic-Framework-for-Neural-Network-Training-Dynamics
-# MATLAB Code — Control-Theoretic Framework for Neural Network Training
+# MATLAB Code - Control-Theoretic Framework for Neural Network Training
 
 This folder contains the MATLAB scripts used to produce the experimental
 results reported in *"A Tutorial on Control-Theoretic Framework for Neural
@@ -16,12 +16,12 @@ five-layer CNN.
 
 ## Files
 
-- `XOR.m` — Binary XOR classification with a 2-2-1 feedforward network
+- `XOR.m` - Binary XOR classification with a 2-2-1 feedforward network
   (2 inputs, 2 hidden neurons, 1 sigmoid output), trained with full-batch
   binary cross-entropy loss for 1000 epochs. Compares SGD, SGD with
   momentum, Adam, and the proposed CLF-based gain. Produces training-loss,
   accuracy, adaptive step-size, and decision-boundary plots.
-- `CIFAR10.m` — CIFAR-10 image classification with a five-layer CNN
+- `CIFAR10.m` - CIFAR-10 image classification with a five-layer CNN
   (three convolution + batch-norm + ReLU blocks, followed by a fully
   connected layer and a softmax output), trained with mini-batch
   (stochastic) gradients for 50 epochs. Compares the same four optimizers
