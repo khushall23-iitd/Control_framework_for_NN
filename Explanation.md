@@ -1,6 +1,6 @@
 # `CIFAR10.m`
 
-### 2.1 Problem and model
+### 1 Problem and model
 
 * Task: 10-class image classification on CIFAR-10.
 * Data: 50,000 training images and 10,000 test images, each $32\times32\times3$.
@@ -29,7 +29,7 @@ Network ("five-layer CNN": 3 convolutional + 2 fully connected layers):
 
 Total: 1,143,690 learnable parameters (16 learnable arrays). The softmax is applied inside `modelGradients` and `evaluateAccuracy`, not as a network layer. MATLAB default initializers apply (Glorot weights, zero biases, BN scale 1 / offset 0), drawn from the global generator seeded by `rng(10)`.
 
-### 2.2 All settings needed for reproduction
+### 2 All settings needed for reproduction
 
 | Quantity | Variable | Value |
 |---|---|---|
@@ -64,7 +64,7 @@ Reproduction notes:
 * `idx = randperm(numTrain)` is drawn **once per epoch** and shared by all four methods, so all methods see identical mini-batch sequences. Because `randperm` consumes the global generator after the network was built, the order depends on the seed and on the full call sequence of the script.
 * Results can still differ slightly across MATLAB versions, toolbox versions, and hardware.
 
-### 2.3 Line-by-line walkthrough
+### 3 Line-by-line walkthrough
 
 **Header and seed**
 
@@ -177,7 +177,7 @@ Prints the **peak** (maximum over epochs) test accuracy of each method, not the 
 | 2 | Training cross-entropy loss vs. epoch (data behind the CIFAR-10 training-loss figure in the paper) | `CIFAR10_Actual_Training_Loss.png` |
 | 3 | Average CLF gain $\lambda_k$ vs. epoch | `CIFAR10_CLF_Adaptive_Gain.png` |
 
-### 2.4 Local functions
+### 4 Local functions
 
 **`createCIFAR10CNN(classes)`**: builds the layer array of Sec. 2.1 and returns `dlnetwork(layerGraph(layers))`. `numClasses = numel(classes)` = 10.
 
@@ -210,14 +210,14 @@ with $t=$ `iteration` (global step, 1 to 19,500).
 
 **`loadCIFAR10(dataFolder)`**: reads `data_batch_1..5.mat` and `test_batch.mat`. Each row of `data` is a 3072-vector stored channel-by-channel. `reshape(data',32,32,3,[])` followed by `permute([2 1 3 4])` yields images in height×width×channel×N order. Labels (0–9) are converted to categorical using `batches.meta.mat` class names (`airplane`, `automobile`, `bird`, `cat`, `deer`, `dog`, `frog`, `horse`, `ship`, `truck`).
 
-### 2.5 Behaviours of the code worth knowing
+### 5 Behaviours of the code worth knowing
 
 * **BatchNorm is always in "training" mode.** `modelGradients` and `evaluateAccuracy` both call `forward(net,dlX)` and discard the returned state. Hence the network's running mean/variance are never updated, and test-time accuracy is computed using the statistics of each test mini-batch (128 images), not population statistics. This applies equally to all four methods. If you want to reproduce the reported numbers, do not change this.
 * **Training loss is a running average** over the epoch (see 2.3), whereas **accuracy is on the test set**. The paper's CIFAR-10 figure shows training loss.
 * **Reported peak accuracy** is `max(acc*)` over the 50 epochs.
 * The shared mini-batch order isolates the effect of the update rule from the data order.
 
-### 2.6 How to run
+### 6 How to run
 
 1. MATLAB R2022b or later with the Deep Learning Toolbox; internet access on the first run.
 2. Open the `matlab_code` folder in MATLAB and run `CIFAR10`.
@@ -226,7 +226,7 @@ with $t=$ `iteration` (global step, 1 to 19,500).
 
 ---
 
-## Part 3 — Side-by-side summary of the two experiments
+## Side-by-side summary of the two experiments
 
 | Item | XOR | CIFAR-10 |
 |---|---|---|
