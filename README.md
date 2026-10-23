@@ -19,12 +19,12 @@ five-layer CNN.
   binary cross-entropy loss for 1000 epochs. Compares SGD, SGD with
   momentum, Adam, and the proposed CLF-based gain. Produces training-loss,
   accuracy, adaptive step-size, and decision-boundary plots.
-- `CIFAR10.m` - CIFAR-10 image classification with a five-layer CNN
-  (three convolution + batch-norm + ReLU blocks, followed by a fully
-  connected layer and a softmax output), trained with mini-batch
-  (stochastic) gradients for 50 epochs. Compares the same four optimizers
-  and reports test accuracy and training-loss curves. Downloads the
-  CIFAR-10 dataset automatically on first run.
+- `CIFAR10.m` - CIFAR-10 image classification with five learned layers
+  (three convolutional layers and two fully connected layers), plus batch
+  normalization, ReLU, and pooling. Trained with mini-batch gradients for
+  50 epochs, it compares the same four optimizers and reports test accuracy
+  and training-loss curves. Downloads the CIFAR-10 dataset automatically on
+  first run.
 
 ### Explanation
 
